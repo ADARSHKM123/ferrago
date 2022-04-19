@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.72ef69ff.chunk.css",
+    "main.js": "/static/js/main.df67a723.chunk.js",
+    "main.js.map": "/static/js/main.df67a723.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d935bac7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d935bac7.js.map",
+    "static/js/2.7044cc64.chunk.js": "/static/js/2.7044cc64.chunk.js",
+    "static/js/2.7044cc64.chunk.js.map": "/static/js/2.7044cc64.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.72ef69ff.chunk.css.map": "/static/css/main.72ef69ff.chunk.css.map",
+    "static/js/2.7044cc64.chunk.js.LICENSE.txt": "/static/js/2.7044cc64.chunk.js.LICENSE.txt",
+    "static/media/brooke-lark-M4E7X3z80PQ-unsplash.f561d10e.jpg": "/static/media/brooke-lark-M4E7X3z80PQ-unsplash.f561d10e.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d935bac7.js",
+    "static/js/2.7044cc64.chunk.js",
+    "static/css/main.72ef69ff.chunk.css",
+    "static/js/main.df67a723.chunk.js"
+  ]
+}
