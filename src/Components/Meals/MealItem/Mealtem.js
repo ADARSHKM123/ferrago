@@ -16,6 +16,7 @@ const ctx = useContext(CartContext);
      amount:amount,
      price:props.price
    })
+   
   }
 
   return (

@@ -10,17 +10,49 @@ const defaultCartState = {
 
 const cartReducer=(state,action)=>{
   if(action.type === 'ADD'){
-   const updatedItems = state.items.concat(action.item);
-   const updatedAmount = state.totalAmount + action.item.price*action.item.amount;
+    const updatedAmount = state.totalAmount + action.item.price*action.item.amount;
+    const existingItemIndex = state.items.findIndex(item=> item.id=== action.item.id);
+    const existingCartItem = state.items[existingItemIndex];
+    let updatedItems;
+   
+    if(existingCartItem){
+    const  updatedItem={
+        ...existingCartItem,
+        amount: existingCartItem.amount + action.item.amount,
+      }
+      updatedItems =[...state.items]
+      updatedItems[existingItemIndex] = updatedItem;
+    }else{
+      updatedItems = state.items.concat(action.item);
+    }
    return{
      items:updatedItems,
      totalAmount:updatedAmount
    }
   }
-  // if(action.type === 'REMOVE'){
-  //   const updatedItems = state.items.filter(each=> each.id !== action.id);
-  //   const updatedAmount = state.totalAmount - ac
-  // }
+  
+  if(action.type === 'REMOVE'){
+    let updatedItem;
+    let updatedItems;
+   
+      const existingItemIndex = state.items.findIndex(item=> item.id=== action.id);
+      const existingCartItem = state.items[existingItemIndex];
+     const updatedAmount = state.totalAmount - existingCartItem.price;
+   if(existingCartItem.amount === 1){
+     updatedItems = state.items.filter(each=> each.id !== action.id);
+   }else{
+  
+   updatedItem = 
+   {  ...existingCartItem,
+    amount:existingCartItem.amount-1 }
+    updatedItems =[...state.items]
+    updatedItems[existingItemIndex] = updatedItem;
+   }
+    return{
+      items:updatedItems,
+      totalAmount: updatedAmount
+    }
+  }
 return defaultCartState;
 }
 
@@ -41,6 +73,7 @@ function CartProvider(props) {
     totalAmount:CartState.totalAmount,
     addItems:addItemHandler ,
     removeItem:removeItemHandler,
+    
   }
 
   return  <CartContext.Provider value={cartContext}>

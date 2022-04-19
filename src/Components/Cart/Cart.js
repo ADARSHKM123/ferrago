@@ -13,13 +13,38 @@ const totalAmount = ctx.totalAmount.toFixed(2);
 
 const hasItem = ctx.items.length >0;
 
-const CartRemoveHandler=()=>{
-
+const CartRemoveHandler=(id)=>{
+ctx.removeItem(id);
 }
 
-const CartAddHandler = ()=>{
-
+const CartAddHandler = (item)=>{
+ctx.addItems(item);
 }
+
+const submitCartItems=async()=>{
+  console.log('clicked');
+  try{
+    const response = await fetch('https://ferrago-1e216-default-rtdb.firebaseio.com/orders.json',{
+         method:'POST',
+         body:JSON.stringify({
+           cart:ctx.items,
+           
+         })
+       })
+       if(response.ok){
+        console.log('succesfull');
+      }
+       if(!response.ok){
+         throw new Error('Something went wromg');
+       }
+     const data =await response.json();
+     console.log(data);
+
+  }catch(error){
+   console.log(error);
+  }
+}
+
 
   const cartItems = <ul className={classes['cart-items']}>
   {ctx.items.map(item=> 
@@ -41,7 +66,7 @@ const CartAddHandler = ()=>{
     </div>
     <div className={classes.actions}>
       <button className={classes['button-alt']} onClick={props.Onclose}>Close</button>
-      {hasItem && <button className={classes.button}>Order</button>}
+      {hasItem && <button className={classes.button} onClick={submitCartItems}>Order</button>}
     </div> 
   </CartModel>
   )
